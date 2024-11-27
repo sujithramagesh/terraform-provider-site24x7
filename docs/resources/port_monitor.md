@@ -26,6 +26,12 @@ resource "site24x7_port_monitor" "port_monitor_example" {
   //(Optional)Whois Server Port.Default value is 43
   port=443
 
+  //(Optional)Timeout for connecting to the host.Range 1 - 45.
+  timeout=10 
+
+  //Invert the default behaviour of PORT check.
+  invert_port_check=false
+
   //Select IPv6 for monitoring the websites hosted with IPv6 address. If 
   //you choose non IPv6 supported locations, monitoring will happen through
   //IPv4.
@@ -33,12 +39,6 @@ resource "site24x7_port_monitor" "port_monitor_example" {
 
   //Use secure connection (SSL).
   use_ssl=true
-
-  //Invert the default behaviour of PORT check.
-  invert_port_check=false
-
-  //(Optional)Timeout for connecting to the host.Range 1 - 45.
-  timeout=10 
 
   //(Optional)Toggle button to perform automation or not
   perform_automation=true
@@ -132,25 +132,27 @@ resource "site24x7_port_monitor" "port_monitor_example" {
 * `host_name`(String)Registered domain name.
 ### Optional
 * `id` (String) The ID of this resource.
-* `type` DOMAINEXPIRY
-* `domain_name`(String)Who is server.
+* `type` PORT.
 * `port`(int)  Whois Server Port
 * `timeout`(int) Timeout for connecting to the host.
+* `invert_port_check`(bool)Invert the default behaviour of PORT check.
 * `use_ipv6`(bool) Prefer IPV6
 * `use_ssl` (bool) Prefer SSL
-* `perform_automation` (bool) Automating the scheduled maintenance
-* `invert_port_check` (bool) Invert the default behaviour of PORT check.
+* `application_type` (String) Provide the application type that runs on the configured port
 * `command` (string) Use this to send plain text commands to the host.
-* `application_type` (string) Provide the application type that runs on the configured port.
-* `check_frequency` Check interval for monitoring.
 * `matching_keyword` (Map of String) Check for the keyword in the website response.
+* `threshold_profile_id` (String) Threshold profile associated with the monitor.
 * `unmatching_keyword` (Map of String) Check for non existence of keyword in the website response.
+* `perform_automation` (bool) Automating the scheduled maintenance
+* `check_frequency` Check interval for monitoring.
+* `location_profile_id` (String) Location profile to be associated with the monitor.
+* `location_profile_name` (String) Name of the location profile to be associated with the monitor.
 * `notification_profile_id` (String) Notification profile to be associated with the monitor. Either specify notification_profile_id or notification_profile_name. If notification_profile_id and notification_profile_name are omitted, the first profile returned by the /api/notification_profiles endpoint will be used.
 * `notification_profile_name` (String) Name of the notification profile to be associated with the monitor. Profile name matching works for both exact and partial match.
-* `dependency_resource_ids` (List of String) List of dependent resource IDs. Suppress alert when dependent monitor(s) is down.
-* `monitor_groups` (List of String) List of monitor groups to which the monitor has to be associated.
 * `user_group_ids` (List of String) List of user groups to be notified when the monitor is down. Either specify user_group_ids or user_group_names. If omitted, the first user group returned by the /api/user_groups endpoint will be used.
 * `user_group_names` (List of String) List of user group names to be notified when the monitor is down. Either specify user_group_ids or user_group_names. If omitted, the first user group returned by the /api/user_groups endpoint will be used.
+* `dependency_resource_ids` (List of String) List of dependent resource IDs. Suppress alert when dependent monitor(s) is down.
+* `monitor_groups` (List of String) List of monitor groups to which the monitor has to be associated.
 * `tag_ids` (List of String) List of tags IDs to be associated to the monitor. Either specify tag_ids or tag_names.
 * `tag_names` (List of String) List of tag names to be associated to the monitor. Tag name matching works for both exact and partial match. Either specify tag_ids or tag_names.
 * `third_party_service_ids` (List of String) List of Third Party Service IDs to be associated to the monitor.

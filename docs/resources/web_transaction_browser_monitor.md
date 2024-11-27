@@ -28,8 +28,8 @@ Use this resource to create, upda te and delete a Web-Transaction-Browser monito
     //(Required while creation)Recorded transaction script type.(txt , side)
     selenium_script="{\"id\":\"b500a6da-dbb7-4d0c-968e-ae3fd6ab411f\",\"version\":\"1.1\",\"name\":\"\",       \"url\":\"https://www.example.com\",\"tests\":[{\"id\":\"f30156f4-3a70-4031-9a41-dbe8eac7e494\",\"name\":\"\",\"commands\":[{\"id\":\"59b9fca1-28f3-46eb-afc5-0be35a1f582f\",\"comment\":\"\",\"command\":\"newStep\",\"target\":\"Loading - https://www.example.com\",\"targets\":[],\"value\":\"\",\"URL\":\"https://www.example.com\",\"stepCount\":1,\"stepTime\":\"0\",\"actionName\":\"\"},{\"id\":\"14bbdd0e-f78f-4591-916e-4b6cf94ce576\",\"comment\":\"\",\"command\":\"open\",\"target\":\"/\",\"targets\":[],\"value\":\"\",\"URL\":\"\",\"stepCount\":0,\"stepTime\":0,\"actionName\":\"\"}]}],\"suites\":[{\"id\":\"38e2db3f-b835-47e8-8786-b87792d6fe4f\",\"name\":\"\",\"persistSession\":false,\"parallel\":false,\"timeout\":300,\"tests\":[\"f30156f4-3a70-4031-9a41-dbe8eac7e494\"]}],\"urls\":[\"https://www.example.com/\"],\"plugins\":[]}"
 
-    //(Required while creation)Recorded transaction script type.(txt , side)
-    script_type="txt"
+    //(Required while creation)Recorded transaction script type.(side)
+    script_type="side"
     // (Required) Provide the Cookies for parameter forwarding in   Map format.
     cookies ={
           "Accept" = "application/json"

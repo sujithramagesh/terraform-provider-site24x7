@@ -25,7 +25,7 @@ var FTPTransferMonitorSchema = map[string]*schema.Schema{
 		Type:        schema.TypeString,
 		Optional:    true,
 		Default:     "FTP",
-		Description: "HTTPS,SMTPS,POPS,IMAPS,FTPS or CUSTOM",
+		Description: "FTP,SMTPS,FTPS-SSL OR FTPS-TLS",
 	},
 	"port": {
 		Type:        schema.TypeInt,
@@ -71,6 +71,11 @@ var FTPTransferMonitorSchema = map[string]*schema.Schema{
 		Type:        schema.TypeString,
 		Optional:    true,
 		Description: "Destination of the file path",
+	},
+	"perform_automation": {
+		Type:        schema.TypeBool,
+		Optional:    true,
+		Description: "To perform automation or not",
 	},
 	"location_profile_id": {
 		Type:        schema.TypeString,
@@ -126,11 +131,6 @@ var FTPTransferMonitorSchema = map[string]*schema.Schema{
 		},
 		Optional:    true,
 		Description: "List of tag names to be associated to the monitor",
-	},
-	"perform_automation": {
-		Type:        schema.TypeBool,
-		Optional:    true,
-		Description: "To perform automation or not",
 	},
 	"actions": {
 		Type:        schema.TypeMap,

@@ -66,19 +66,19 @@ resource "site24x7_ping_monitor" "ping_monitor_us" {
     // (Required) host name of the monitor
     host_name = "www.example.com"
 
-    //(Optional)Should we prefer to use IPV6 or not
-    use_ipv6=true
-
     //(Optional)Timeout for connecting to the host.Range 1 - 45.
     timeout=10 
 
+    //(Optional)Should we prefer to use IPV6 or not
+    use_ipv6=true
+
+    // (Optional) Check interval for monitoring. Default: 5. See
+    // https://www.site24x7.com/help/api/#check-interval for all supported
+    // values.
+    check_frequency = "5"
+
     //(Optional)Toggle button to perform automation or not
     perform_automation=true
-
-    //(Optional)if user_group_ids is not choosen
-    //On-Call Schedule of your choice.
-    //Create new On-Call Schedule or find your preferred On-Call Schedule ID.
-    on_call_schedule_id="456418000001258016"
 
     // (Optional) Location Profile to be associated with the monitor. If 
     // location_profile_id and location_profile_name are omitted,
@@ -95,12 +95,6 @@ resource "site24x7_ping_monitor" "ping_monitor_us" {
     // used.
     location_profile_name = "North America"
 
-    // (Optional) Map of status to actions that should be performed on monitor
-    // status changes. See
-    // https://www.site24x7.com/help/api/#action-rule-constants for all available
-    // status values.
-    actions = {1=465545643755}
-
     // (Optional) Notification profile to be associated with the monitor. If
     // omitted, the first profile returned by the /api/notification_profiles
     // endpoint (https://www.site24x7.com/help/api/#list-notification-profiles)
@@ -116,11 +110,12 @@ resource "site24x7_ping_monitor" "ping_monitor_us" {
     // used.
     notification_profile_name = "Terraform Profile"
 
-    // (Optional) List of monitor group IDs to associate the monitor to.
-    monitor_groups = [
-        "123",
-        "456"
-    ]
+    //(Optional)(String)
+    //Threshold profile to be associated with the monitor. If
+    // omitted, the first profile returned by the /api/threshold_profiles
+    // endpoint for the HEARTBEAT monitor type (https://www.site24x7.com/help/api/#list-threshold-profiles) will
+    // be used.
+    threshold_profile_id = "456418000342341"
 
     // (Optional) List if user group IDs to be notified on down. 
     // Either specify user_group_ids or user_group_names. If omitted, the
@@ -140,6 +135,35 @@ resource "site24x7_ping_monitor" "ping_monitor_us" {
         "Admin",
     ]
 
+    // (Optional)(List of String)
+    // List of dependent resource IDs. Suppress alert  when dependent monitor(s) is down.
+    dependency_resource_ids = [
+        "123",
+        "456"
+      ]
+    
+    //(Optional)if user_group_ids is not choosen
+    //On-Call Schedule of your choice.
+    //Create new On-Call Schedule or find your preferred On-Call Schedule ID.
+    on_call_schedule_id="456418000001258016"
+
+    // (Optional) List of monitor group IDs to associate the monitor to.
+    monitor_groups = [
+        "123",
+        "456"
+    ]
+
+    // (Optional) Map of status actions that should be performed on monitor
+    // status changes. See
+    // https://www.site24x7.com/help/api/#action-rule-constants for all available
+    // status values.
+    actions = {1=465545643755}
+
+    // (Optional) List of Third Party Service IDs to be associated to the monitor.
+    third_party_service_ids = [
+        "4567"
+    ]
+
     // (Optional) List if tag IDs to be associated to the monitor.
     tag_ids = [
         "123",
@@ -150,10 +174,5 @@ resource "site24x7_ping_monitor" "ping_monitor_us" {
     tag_names = [
         "Terraform",
         "Network",
-    ]
-
-    // (Optional) List of Third Party Service IDs to be associated to the monitor.
-    third_party_service_ids = [
-        "4567"
     ]
 }
